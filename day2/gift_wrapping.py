@@ -12,6 +12,6 @@ for line in file:
 	area[2] = int(dimensions[2]) * int(dimensions[0])
 
 	length += min(area[0], area[1], area[2])
-	length += area[0] * 2 + area[1] * 2 + area[2] * 2
+	length += (area[0] + area[1] + area[2]) * 2
 
 print length
