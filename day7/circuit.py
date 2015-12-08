@@ -13,58 +13,53 @@ class Gate:
 		return str([self.input_wire, self.output_wire, self.type])
 
 	def compute_value(self):
-			if(self.output_wire in wires) :
-				return wires[self.output_wire]
+		if(self.output_wire in wires) :
+			return wires[self.output_wire]
 
-			value = -1
-		# try:
-			if self.type == 'signal':
-				value =  self.input_wire
-			elif self.type == 'redirect':
-				for gate in gates:
-					if gate.output_wire == self.input_wire:
-						value =  int(gate.compute_value())
+		if self.type == 'signal':
+			value =  self.input_wire
+		elif self.type == 'redirect':
+			for gate in gates:
+				if gate.output_wire == self.input_wire:
+					value =  int(gate.compute_value())
 
-			elif self.type == 'NOT':
-				for gate in gates:
-					if gate.output_wire == self.input_wire:
-						value = ~int(gate.compute_value())
+		elif self.type == 'NOT':
+			for gate in gates:
+				if gate.output_wire == self.input_wire:
+					value = ~int(gate.compute_value())
 
-			elif self.type == 'OR':
-				gate_inputs = []
-				for gate in gates:
-					if gate.output_wire in self.input_wire:
-						gate_inputs.append(gate)					
-				if len(gate_inputs) == 1:
-					value = (int(self.input_wire[0]) | gate_inputs[0].compute_value())
-				else:
-					value = (int(gate_inputs[0].compute_value()) | int(gate_inputs[1].compute_value()))
-				
-			elif self.type == 'AND':
-				gate_inputs = []
-				for gate in gates:
-					if gate.output_wire in self.input_wire:
-						gate_inputs.append(gate)
-				if len(gate_inputs) == 1:
-					value = (int(self.input_wire[0]) & gate_inputs[0].compute_value())
-				else:
-					value = (int(gate_inputs[0].compute_value()) & int(gate_inputs[1].compute_value()))
+		elif self.type == 'OR':
+			gate_inputs = []
+			for gate in gates:
+				if gate.output_wire in self.input_wire:
+					gate_inputs.append(gate)					
+			if len(gate_inputs) == 1:
+				value = (int(self.input_wire[0]) | gate_inputs[0].compute_value())
+			else:
+				value = (int(gate_inputs[0].compute_value()) | int(gate_inputs[1].compute_value()))
+			
+		elif self.type == 'AND':
+			gate_inputs = []
+			for gate in gates:
+				if gate.output_wire in self.input_wire:
+					gate_inputs.append(gate)
+			if len(gate_inputs) == 1:
+				value = (int(self.input_wire[0]) & gate_inputs[0].compute_value())
+			else:
+				value = (int(gate_inputs[0].compute_value()) & int(gate_inputs[1].compute_value()))
 
-			elif self.type == 'LSHIFT':
-				for gate in gates:
-					if gate.output_wire == self.input_wire[0]:
-						value = (int(gate.compute_value()) << int(self.input_wire[1]))
+		elif self.type == 'LSHIFT':
+			for gate in gates:
+				if gate.output_wire == self.input_wire[0]:
+					value = (int(gate.compute_value()) << int(self.input_wire[1]))
 
-			elif self.type == 'RSHIFT':
-				for gate in gates:
-					if gate.output_wire == self.input_wire[0]:
-						value = (int(gate.compute_value()) >> int(self.input_wire[1]))
+		elif self.type == 'RSHIFT':
+			for gate in gates:
+				if gate.output_wire == self.input_wire[0]:
+					value = (int(gate.compute_value()) >> int(self.input_wire[1]))
 
-			wires[self.output_wire] = value;
-			return value
-
-		# except:
-		# 	print self
+		wires[self.output_wire] = value;
+		return value
 
 with open('input.txt') as input_file:
 	for line in input_file:
@@ -92,14 +87,13 @@ second_part_answer = 0
 
 for gate in gates:
 	if gate.output_wire == 'a':
+		output_gate = gate
 		first_part_answer = gate.compute_value()
 
 wires = {}
 wires['b'] = first_part_answer
 
-for gate in gates:
-	if gate.output_wire == 'a':
-		second_part_answer = gate.compute_value()
+second_part_answer = output_gate.compute_value()
 
 print 'first part: ' + str(first_part_answer)
 print 'second part: ' + str(second_part_answer)
