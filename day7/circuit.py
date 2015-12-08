@@ -94,11 +94,8 @@ for gate in gates:
 	if gate.output_wire == 'a':
 		first_part_answer = gate.compute_value()
 
-for gate in gates:
-	if gate.output_wire == 'b':
-		gate.input_wire = first_part_answer
-
 wires = {}
+wires['b'] = first_part_answer
 
 for gate in gates:
 	if gate.output_wire == 'a':
