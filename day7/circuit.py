@@ -21,12 +21,12 @@ class Gate:
 		elif self.type == 'redirect':
 			for gate in gates:
 				if gate.output_wire == self.input_wire:
-					value =  int(gate.compute_value())
+					value =  gate.compute_value()
 
 		elif self.type == 'NOT':
 			for gate in gates:
 				if gate.output_wire == self.input_wire:
-					value = ~int(gate.compute_value())
+					value = ~gate.compute_value()
 
 		elif self.type == 'OR':
 			gate_inputs = []
@@ -34,9 +34,9 @@ class Gate:
 				if gate.output_wire in self.input_wire:
 					gate_inputs.append(gate)					
 			if len(gate_inputs) == 1:
-				value = (int(self.input_wire[0]) | gate_inputs[0].compute_value())
+				value = (self.input_wire[0] | gate_inputs[0].compute_value())
 			else:
-				value = (int(gate_inputs[0].compute_value()) | int(gate_inputs[1].compute_value()))
+				value = (gate_inputs[0].compute_value() | gate_inputs[1].compute_value())
 			
 		elif self.type == 'AND':
 			gate_inputs = []
@@ -46,17 +46,17 @@ class Gate:
 			if len(gate_inputs) == 1:
 				value = (int(self.input_wire[0]) & gate_inputs[0].compute_value())
 			else:
-				value = (int(gate_inputs[0].compute_value()) & int(gate_inputs[1].compute_value()))
+				value = (gate_inputs[0].compute_value() & gate_inputs[1].compute_value())
 
 		elif self.type == 'LSHIFT':
 			for gate in gates:
 				if gate.output_wire == self.input_wire[0]:
-					value = (int(gate.compute_value()) << int(self.input_wire[1]))
+					value = (gate.compute_value() << int(self.input_wire[1]))
 
 		elif self.type == 'RSHIFT':
 			for gate in gates:
 				if gate.output_wire == self.input_wire[0]:
-					value = (int(gate.compute_value()) >> int(self.input_wire[1]))
+					value = (gate.compute_value() >> int(self.input_wire[1]))
 
 		wires[self.output_wire] = value;
 		return value
