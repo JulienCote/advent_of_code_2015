@@ -2,28 +2,26 @@
 
 file = open('input.txt')
 
-position = [[0,0], [0,0]]
+x = [0, 0]
+y = [0, 0]
 santa_vs_robot = 0
 record = []
 
 file = file.read()
 
-def position_to_string():
-	return str(position[santa_vs_robot][0]) + '.' + str(position[santa_vs_robot][1])
-
 for c in file:
-	if position_to_string() not in record:
-		record.append(position_to_string())
+	if [x[santa_vs_robot], y[santa_vs_robot]] not in record:
+		record.append([x[santa_vs_robot], y[santa_vs_robot]])
 
 	if c == '^':
-		position[santa_vs_robot][1] += 1
+		y[santa_vs_robot] += 1
 	elif c == '>':
-		position[santa_vs_robot][0] += 1
+		x[santa_vs_robot] += 1
 	elif c == '<':
-		position[santa_vs_robot][0] -= 1
+		x[santa_vs_robot] -= 1
 	elif c == 'v':
-		position[santa_vs_robot][1] -= 1
+		y[santa_vs_robot] -= 1
 
-	santa_vs_robot  = santa_vs_robot ^ 1
+	santa_vs_robot = ~santa_vs_robot
 
 print len(record)
