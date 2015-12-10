@@ -3,9 +3,7 @@
 import hashlib
 
 def validate_key(key):
-	if (key[:6] == '000000'):
-		return True
-	return False
+	return key[:6] == '000000'
 
 hasher = hashlib.md5()
 secret_key = 'bgvyzdsv'
