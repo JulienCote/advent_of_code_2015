@@ -28,7 +28,6 @@ with open('input.txt') as fp:
 			
 		if (letter_pair and inbetween_repeater):
 			nice_string_counter += 1
-		
 
 	print nice_string_counter
 

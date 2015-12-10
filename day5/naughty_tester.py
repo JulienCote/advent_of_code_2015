@@ -12,7 +12,7 @@ with open('input.txt') as fp:
 
 		for char in line:
 			last_2_char = previous_char + char
-			print last_2_char
+
 			if ((last_2_char == 'ab') or (last_2_char == 'cd') or (last_2_char == 'pq') or (last_2_char == 'xy')):
 				evil_chars = True
 			if(char == 'a' or char == 'e' or char == 'i' or char == 'o' or char == 'u'):
@@ -24,8 +24,7 @@ with open('input.txt') as fp:
 
 		if (double_char and vowel_count >= 3 and not evil_chars):
 			nice_string_counter += 1
-		
-
+			
 	print nice_string_counter
 
 
