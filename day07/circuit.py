@@ -66,9 +66,6 @@ with open('input.txt') as input_file:
 		split_line = line.rstrip('\n').split(' ')
 
 		if(split_line[0] == 'NOT'):
-			input_wire = ()
-			output_wire = ()
-
 			new_gate = Gate(split_line[1], split_line[3], split_line[0])
 			gates.append(new_gate)
 		elif (split_line[0].isdigit() and len(split_line) == 3):
@@ -81,9 +78,6 @@ with open('input.txt') as input_file:
 			else:
 				new_gate = Gate([split_line[0], split_line[2]], split_line[4], split_line[1])
 				gates.append(new_gate)
-
-first_part_answer = 0
-second_part_answer = 0
 
 for gate in gates:
 	if gate.output_wire == 'a':
