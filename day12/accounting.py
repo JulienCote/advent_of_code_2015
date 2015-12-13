@@ -2,10 +2,8 @@ import re
 import json
 
 def sum_all(text):
-    regex = '(-?\d+)+'
-    numbers = re.findall(regex, text)
-    numbers = [int(i) for i in numbers]
-    return sum(numbers)
+    numbers = re.findall('(-?\d+)+', text)
+    return sum([int(i) for i in numbers])
 
 def redless_sum(json_object):
     partial_sum = 0
