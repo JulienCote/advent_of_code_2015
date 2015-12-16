@@ -18,12 +18,15 @@ with open('input.txt') as input_file:
                 if split_line.group(i) in ['cats', 'trees']:
                     if not right_sue[split_line.group(i)] < int(split_line.group(i+1)):
                         have_wrong_bit = True
+                        break
                 elif split_line.group(i) in ['pomeranians', 'goldfish']:
                     if not right_sue[split_line.group(i)] > int(split_line.group(i+1)):
                         have_wrong_bit = True
+                        break
                 else:
                     if right_sue[split_line.group(i)] != int(split_line.group(i+1)):
                         have_wrong_bit = True
+                        break
 
             if not have_wrong_bit:
                 print 'The right part2 sue is number: ' + split_line.group(1)
