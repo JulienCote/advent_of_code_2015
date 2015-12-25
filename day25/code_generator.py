@@ -5,12 +5,10 @@ x = 1
 y = 1
 
 value = 20151125
-step = 1
 
 while x <= column or y <= row:
-	if x == step and y == 1:
-		step += 1
-		y = step
+	if y == 1:
+		y = x + 1
 		x = 1
 	else:
 		x += 1
